@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+	<!-- Menu -->
+
+  {% block body %}
+
+	<div class="menu">
+		<div class="menu_header d-flex flex-row align-items-center justify-content-start">
+			<div class="menu_logo"><a href="">Bon Voyage</a></div>
+			<div class="menu_close_container ml-auto"><div class="menu_close"><div></div><div></div></div></div>
+		</div>
+		<div class="menu_content">
+			<ul>
+				<li><a href="">Home</a></li>
+			</ul>
+		</div>
+		<div class="menu_social">
+			<div class="menu_phone ml-auto">Call us: 56 121 256 325</div>
+			<ul class="d-flex flex-row align-items-start justify-content-start">
+				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!-- Home -->
+
+	<div class="home">
+		
+		<!-- Home Slider -->
+		<div class="home_slider_container">
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+					<div class="home_slider_content_container">
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="home_slider_content">
+										<div class="home_title"><h2>Life is short and the world is wide.</h2></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+					<div class="home_slider_content_container">
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="home_slider_content">
+										<div class="home_title"><h2>Life is short and the world is wide.</h2></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Slide -->
+				<div class="owl-item">
+					<div class="background_image" style="background-image:url({% static 'images/home_slider.jpg'%})"></div>
+					<div class="home_slider_content_container">
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="home_slider_content">
+										<div class="home_title"><h2>Life is short and the world is wide.</h2></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Intro -->
+
+	<div class="intro">
+		<div class="intro_background" style="background-image:url({% static 'images/intro.png' %})"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="intro_container">
+						<div class="row">
+
+							<!-- Intro Item -->
+							<div class="col-lg-4 intro_col">
+								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+									<div class="intro_icon"><img src="{% static 'images/beach.svg' %}" alt=""></div>
+									<div class="intro_content">
+										<div class="intro_title">Top Destinations</div>
+										<div class="intro_subtitle"><p>Login to Add/Delete/Update the blog.</p></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Intro Item -->
+							<div class="col-lg-4 intro_col">
+								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+									<div class="intro_icon"><img src="{% static 'images/wallet.svg'%}" alt=""></div>
+									<div class="intro_content">
+										<div class="intro_title">The Best Prices</div>
+										<div class="intro_subtitle"><p>Login to Add/Delete/Update the blog</p></div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Intro Item -->
+							<div class="col-lg-4 intro_col">
+								<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+									<div class="intro_icon"><img src="{% static 'images/suitcase.svg'%}" alt=""></div>
+									<div class="intro_content">
+										<div class="intro_title">Amazing Services</div>
+										<div class="intro_subtitle"><p>Login to Add/Delete/Update the blog</p></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+
+	<!-- Destinations -->
+{% if user.is_authenticated %}
+<center><a class="btn btn-primary" href="add_place" style="width: 350px;">Add Blogs</a></center>
+{% endif %}
+	<div class="destinations" id="destinations">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_subtitle">Login to Add/Delete/Update the blog</div>
+					<div class="section_title"><h2>Popular Destinations</h2></div>
+				</div>
+			</div>
+			<div class="row destinations_row">
+				<div class="col">
+					<div class="destinations_container item_grid">
+                        {% for result in results %}
+						<!-- Destination -->
+						<div class="destination item">
+							<div class="destination_image">
+								<img src="{{result.img.url}}" alt="" style="width:500px;height:300px">
+							</div>
+							<div class="destination_content">
+								<div class="destination_title"><a href="destinations.html">{{result.name}}</a></div>
+								<div class="destination_subtitle"><p>{{result.desc}}</p></div>
+								<div class="destination_price">From Rs. {{result.price}}</div>
+							</div>
+							{% if user.is_authenticated %}
+							<a class="btn btn-primary" href="update/{{result.id}}" style="width: 100px;">Update </a>&nbsp;<a class="btn btn-primary" href="delete/{{result.id}}/" style="width: 100px;">Delete </a>
+            				{% endif %}
+						</div>
+                         {% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Testimonials -->
+
+<!--	<div class="testimonials" id="testimonials">-->
+<!--		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/testimonials.jpg'%}" data-speed="0.8"></div>-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col text-center">-->
+<!--					<div class="section_subtitle">simply amazing places</div>-->
+<!--					<div class="section_title"><h2>Testimonials</h2></div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--&lt;!&ndash;			<div class="row testimonials_row">&ndash;&gt;-->
+<!--				<div class="col">-->
+
+					<!-- Testimonials Slider -->
+<!--					<div class="testimonials_slider_container">-->
+<!--						<div class="owl-carousel owl-theme testimonials_slider">-->
+<!--							-->
+							<!-- Slide -->
+<!--							<div class="owl-item text-center">-->
+<!--								<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>-->
+<!--								<div class="testimonial_author">-->
+<!--									<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">-->
+<!--										<div>john turner,</div>-->
+<!--										<div>client</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+
+							<!-- Slide -->
+<!--							<div class="owl-item text-center">-->
+<!--								<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>-->
+<!--								<div class="testimonial_author">-->
+<!--									<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">-->
+<!--										<div>john turner,</div>-->
+<!--										<div>client</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+
+							<!-- Slide -->
+<!--							<div class="owl-item text-center">-->
+<!--								<div class="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. lobortis dolor. Cras placerat lectus a posuere aliquet. Curabitur quis vehicula odio.</div>-->
+<!--								<div class="testimonial_author">-->
+<!--									<div class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">-->
+<!--										<div>john turner,</div>-->
+<!--										<div>client</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<div class="test_nav">-->
+<!--			<ul class="d-flex flex-column align-items-end justify-content-end">-->
+<!--				<li><a href="#">City Breaks Clients<span>01</span></a></li>-->
+<!--				<li><a href="#">Cruises Clients<span>02</span></a></li>-->
+<!--				<li><a href="#">All Inclusive Clients<span>03</span></a></li>-->
+<!--			</ul>-->
+<!--		</div>-->
+<!--	</div>-->
+
+	<!-- News -->
+
+	<div class="news" id="news">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8">
+					<div class="news_container">
+						
+<!--						&lt;!&ndash; News Post &ndash;&gt;-->
+<!--						{% for post in date %}-->
+<!--						<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">-->
+<!--							<div class="news_post_image"><img src="{{post.image.url}}" alt="" style="width:300px;height:200px"></div>-->
+<!--							<div class="news_post_content">-->
+<!--								<div class="news_post_date d-flex flex-row align-items-end justify-content-start">-->
+<!--									<div>{{post.day}}</div>-->
+<!--									<div>{{post.month}}</div>-->
+<!--								</div>-->
+<!--								<div class="news_post_title"><a href="#">{{post.headline}}</a></div>-->
+<!--								<div class="news_post_category">-->
+<!--									<ul>-->
+<!--										<li><a href="#">lifestyle & travel</a></li>-->
+<!--									</ul>-->
+<!--								</div>-->
+<!--								<div class="news_post_text">-->
+<!--									<p>{{post.descr}}</p>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						{% endfor %}-->
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+</div>
+	{% endblock %}

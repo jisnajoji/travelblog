@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #286086;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+</style>
+<!--<br><br><br><br><br><br><br>-->
+<br><br><br><br><br><br><br>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--    <h1>Update {{obj.name}} Details</h1>-->
+    {{form.as_table}}
+    <br><br>
+    <input type="submit" class="btn btn-primary"  value="UPDATE">
+</form>
+
+{% endblock %}
